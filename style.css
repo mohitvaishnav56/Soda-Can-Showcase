@@ -1,0 +1,160 @@
+/* Reset CSS */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+/* Custom styles go below */
+main {
+    height: 100%;
+    width: 100%;
+    background: url(bg.jpg);
+    background-size: cover;
+    filter: contrast(1.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    position: relative; /* Container needs to be relative */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    width: 190px;
+    aspect-ratio: 1/2;
+    transition: .5s;
+    --left:-300px;
+}
+
+.can {
+    width: 100%;
+    height: 100%;
+    background:
+        var(--url) var(--left) 0px,
+        url(mockup.png);
+    background-blend-mode: multiply;
+    mask-image: url(mockup.png);
+    mask-size: auto 100%;
+    background-size: auto 100%;
+    position: absolute;
+    z-index: 1;
+    transition: .7s ease-in-out;
+}
+.can:nth-child(2){
+    opacity:0;
+    transition-delay: .2s ;
+}
+
+.container:hover {
+    --left: -200px;
+}
+.container:hover {
+    transform: translate(-50%, -80%);
+}
+.container:hover .can:nth-child(2) {
+    opacity:1
+}
+
+
+.rocks {
+    position: absolute; /* Ensure rocks is positioned */
+    inset: 0;
+    z-index: -1;
+    /* pointer-events: none; */
+}
+
+.rocks img {
+    position: absolute; /* Ensure images are positioned */
+    transition: .5s;
+    pointer-events: none;
+}
+
+.rocks img::selection{
+    display: none;
+}
+.rocks img:nth-child(1) {
+    height: 125px;
+    left: 50%;
+    bottom: 7%;
+    filter: contrast(1.3);
+    transform: translateX(-50%) translateY(0%);
+}
+
+main:has(.container:hover) .rocks>img:nth-child(1){
+    bottom: 0%; /* Moves the image up when hovered */
+}
+
+.rocks img:nth-child(2) {
+height: 50%;
+left: 0%;
+bottom: 0%;
+}
+
+main:has(.container:hover) .rocks>img:nth-child(2){
+    left: -10%;
+}
+.rocks img:nth-child(3) {
+height: 80%;
+left: 100%;
+top: 0%;
+transform: translate(-60%, 0%);
+}
+
+main:has(.container:hover) .rocks>img:nth-child(3){
+    transform: translate(-40%, 0%);
+}
+
+
+
+@media (max-width: 768px) {
+    .container {
+        width: 165px;
+    }
+
+    .about {
+        width: 90%;
+        left: 5%;
+        top: 10%;
+    }
+
+    .rocks img:nth-child(1) {
+        height: 15vw;
+    }
+
+    .rocks img:nth-child(2) {
+        height: 30vw;
+    }
+
+    .rocks img:nth-child(3) {
+        height: 50vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 180px;
+    }
+
+    .about {
+    display: none;
+    }
+
+    .rocks img:nth-child(1) {
+        height: 25vw;
+    }
+
+    .rocks img:nth-child(2) {
+        height: 40vw;
+    }
+
+    .rocks img:nth-child(3) {
+        height: 50vw;
+    }
+}
